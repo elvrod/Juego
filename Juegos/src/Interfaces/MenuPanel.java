@@ -2,6 +2,8 @@ package Interfaces;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel {
     private JButton btnRanking3EnRaya;
@@ -30,6 +32,13 @@ public class MenuPanel extends JPanel {
         btnRanking3EnRaya = createButton("Ranking 3 en Raya");
         btnHistorial3EnRaya = createButton("Historial 3 en Raya");
         btnJugar3EnRaya = createButton("Jugar 3 en Raya");
+        btnJugar3EnRaya.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TicTacToe tictactoe = new TicTacToe();
+                tictactoe.setVisible(true);
+            }
+        });
         centerPanel.add(btnRanking3EnRaya);
         centerPanel.add(btnHistorial3EnRaya);
         centerPanel.add(btnJugar3EnRaya);
@@ -38,6 +47,13 @@ public class MenuPanel extends JPanel {
         btnRankingPiedraPapelTijera = createButton("Ranking Piedra, Papel, Tijera");
         btnHistorialPiedraPapelTijera = createButton("Historial Piedra, Papel, Tijera");
         btnJugarPiedraPapelTijera = createButton("Jugar Piedra, Papel, Tijera");
+        btnJugarPiedraPapelTijera.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PiedraPapelTijera juego = new PiedraPapelTijera();
+                juego.setVisible(true);
+            }
+        });
         centerPanel.add(btnRankingPiedraPapelTijera);
         centerPanel.add(btnHistorialPiedraPapelTijera);
         centerPanel.add(btnJugarPiedraPapelTijera);
@@ -51,3 +67,4 @@ public class MenuPanel extends JPanel {
         return button;
     }
 }
+
