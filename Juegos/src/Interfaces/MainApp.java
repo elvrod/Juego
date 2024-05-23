@@ -61,4 +61,4 @@ public class MainApp {
         // Hacer visible la ventana principal
         mainFrame.setVisible(true);
     }
-}
+}// no
