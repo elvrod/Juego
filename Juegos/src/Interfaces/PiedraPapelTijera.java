@@ -72,20 +72,20 @@ public class PiedraPapelTijera extends JFrame {
 
     private String determinarGanador(String jugadaJugador, String jugadaMaquina) {
         if (jugadaJugador.equals(jugadaMaquina)) {
-            return "Â¡Empate!";
+            return "¡Empate!";
         } else if ((jugadaJugador.equals("PIEDRA") && jugadaMaquina.equals("TIJERA")) ||
                    (jugadaJugador.equals("PAPEL") && jugadaMaquina.equals("PIEDRA")) ||
                    (jugadaJugador.equals("TIJERA") && jugadaMaquina.equals("PAPEL"))) {
-            return "Â¡Ganaste!";
+            return "¡Ganaste!";
         } else {
-            return "Â¡Perdiste!";
+            return "¡Perdiste!";
         }
     }
 
     private void actualizarRanking(String resultado) {
         if (resultado.equals("Â¡Ganaste!")) {
             rankingPPT.actualizarPuntos(currentUser, 3);
-        } else if (resultado.equals("Â¡Empate!")) {
+        } else if (resultado.equals("¡Empate!")) {
             rankingPPT.actualizarPuntos(currentUser, 1);
         } else {
             rankingPPT.actualizarPuntos(currentUser, 0);
