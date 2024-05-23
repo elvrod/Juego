@@ -1,4 +1,5 @@
 package Interfaces;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,11 +11,16 @@ public class TicTacToe extends JFrame {
     private boolean playerX;
     private int movesCount;
     private Random random;
+    private String currentUser;
+    private RankingTicTacToe rankingTicTacToe;
 
-    public TicTacToe() {
+    public TicTacToe(String currentUser, RankingTicTacToe rankingTicTacToe) {
+        this.currentUser = currentUser;
+        this.rankingTicTacToe = rankingTicTacToe;
+
         setTitle("3 en Raya");
         setSize(400, 400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cambiar EXIT_ON_CLOSE a DISPOSE_ON_CLOSE
         setLayout(new GridLayout(3, 3));
 
         buttons = new JButton[3][3];
@@ -88,13 +94,13 @@ public class TicTacToe extends JFrame {
         buttons[x][y].setEnabled(false);
         movesCount++;
         if (checkForWin()) {
-            JOptionPane.showMessageDialog(null, "¡La computadora gana!");
+            JOptionPane.showMessageDialog(null, "Â¡La computadora gana!");
+            rankingTicTacToe.actualizarPuntos(currentUser, 0);
             resetGame();
         } else if (checkForDraw()) {
-            JOptionPane.showMessageDialog(null, "¡Empate!");
+            JOptionPane.showMessageDialog(null, "Â¡Empate!");
+            rankingTicTacToe.actualizarPuntos(currentUser, 1);
             resetGame();
-        } else {
-            playerX = true;
         }
     }
 
@@ -113,24 +119,17 @@ public class TicTacToe extends JFrame {
                 buttons[x][y].setEnabled(false);
                 movesCount++;
                 if (checkForWin()) {
-                    JOptionPane.showMessageDialog(null, "¡Jugador X gana!");
+                    JOptionPane.showMessageDialog(null, "Â¡" + currentUser + " gana!");
+                    rankingTicTacToe.actualizarPuntos(currentUser, 3);
                     resetGame();
                 } else if (checkForDraw()) {
-                    JOptionPane.showMessageDialog(null, "¡Empate!");
+                    JOptionPane.showMessageDialog(null, "Â¡Empate!");
+                    rankingTicTacToe.actualizarPuntos(currentUser, 1);
                     resetGame();
                 } else {
-                    playerX = false;
                     makeComputerMove();
                 }
             }
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TicTacToe game = new TicTacToe();
-            game.setVisible(true);
-        });
-    }
 }
-

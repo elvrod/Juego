@@ -10,11 +10,16 @@ public class PiedraPapelTijera extends JFrame {
     private JLabel resultadoLabel;
     private JButton piedraButton, papelButton, tijeraButton;
     private Random random;
+    private String currentUser;
+    private RankingPPT rankingPPT;
 
-    public PiedraPapelTijera() {
+    public PiedraPapelTijera(String currentUser, RankingPPT rankingPPT) {
+        this.currentUser = currentUser;
+        this.rankingPPT = rankingPPT;
+
         setTitle("Piedra, Papel, Tijera");
         setSize(300, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cambiar EXIT_ON_CLOSE a DISPOSE_ON_CLOSE
         setLocationRelativeTo(null);
         setLayout(new GridLayout(4, 1));
 
@@ -62,25 +67,28 @@ public class PiedraPapelTijera extends JFrame {
 
         String resultado = determinarGanador(jugadaJugador, jugadaMaquina);
         resultadoLabel.setText(resultado);
+        actualizarRanking(resultado);
     }
 
     private String determinarGanador(String jugadaJugador, String jugadaMaquina) {
         if (jugadaJugador.equals(jugadaMaquina)) {
-            return "¡Empate!";
+            return "Â¡Empate!";
         } else if ((jugadaJugador.equals("PIEDRA") && jugadaMaquina.equals("TIJERA")) ||
                    (jugadaJugador.equals("PAPEL") && jugadaMaquina.equals("PIEDRA")) ||
                    (jugadaJugador.equals("TIJERA") && jugadaMaquina.equals("PAPEL"))) {
-            return "¡Ganaste!";
+            return "Â¡Ganaste!";
         } else {
-            return "¡Perdiste!";
+            return "Â¡Perdiste!";
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new PiedraPapelTijera().setVisible(true);
-            }
-        });
+    private void actualizarRanking(String resultado) {
+        if (resultado.equals("Â¡Ganaste!")) {
+            rankingPPT.actualizarPuntos(currentUser, 3);
+        } else if (resultado.equals("Â¡Empate!")) {
+            rankingPPT.actualizarPuntos(currentUser, 1);
+        } else {
+            rankingPPT.actualizarPuntos(currentUser, 0);
+        }
     }
 }

@@ -13,18 +13,25 @@ public class MenuPanel extends JPanel {
     private JButton btnJugar3EnRaya;
     private JButton btnJugarPiedraPapelTijera;
     private JButton btnPerfil;
+    private String currentUser;
+    private RankingPPT rankingPPT;
+    private RankingTicTacToe rankingTicTacToe;
 
-    public MenuPanel() {
+    public MenuPanel(String currentUser, RankingPPT rankingPPT, RankingTicTacToe rankingTicTacToe) {
+        this.currentUser = currentUser;
+        this.rankingPPT = rankingPPT;
+        this.rankingTicTacToe = rankingTicTacToe;
+
         setLayout(new BorderLayout());
         setBackground(Color.GRAY);
 
-        // Botón para ir al perfil (arriba a la izquierda)
+        // BotÃ³n para ir al perfil (arriba a la izquierda)
         btnPerfil = createButton("Perfil");
         btnPerfil.setPreferredSize(new Dimension(150, 40));
         add(btnPerfil, BorderLayout.NORTH);
 
         // Panel para los botones de ranking y jugar
-        JPanel centerPanel = new JPanel(new GridLayout(2, 2, 10, 10));
+        JPanel centerPanel = new JPanel(new GridLayout(2, 3, 10, 10));
         centerPanel.setOpaque(false);
         add(centerPanel, BorderLayout.CENTER);
 
@@ -35,7 +42,7 @@ public class MenuPanel extends JPanel {
         btnJugar3EnRaya.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TicTacToe tictactoe = new TicTacToe();
+                TicTacToe tictactoe = new TicTacToe(currentUser, rankingTicTacToe);
                 tictactoe.setVisible(true);
             }
         });
@@ -50,13 +57,32 @@ public class MenuPanel extends JPanel {
         btnJugarPiedraPapelTijera.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PiedraPapelTijera juego = new PiedraPapelTijera();
+                PiedraPapelTijera juego = new PiedraPapelTijera(currentUser, rankingPPT);
                 juego.setVisible(true);
             }
         });
         centerPanel.add(btnRankingPiedraPapelTijera);
         centerPanel.add(btnHistorialPiedraPapelTijera);
         centerPanel.add(btnJugarPiedraPapelTijera);
+
+        // Acciones de los botones de ranking
+        btnRanking3EnRaya.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, rankingTicTacToe.mostrarRanking(), "Ranking 3 en Raya", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        btnRankingPiedraPapelTijera.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, rankingPPT.mostrarRanking(), "Ranking Piedra, Papel, Tijera", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        // Deshabilitar botones de historial por ahora
+        btnHistorial3EnRaya.setEnabled(false);
+        btnHistorialPiedraPapelTijera.setEnabled(false);
     }
 
     private JButton createButton(String text) {
@@ -67,4 +93,3 @@ public class MenuPanel extends JPanel {
         return button;
     }
 }
-

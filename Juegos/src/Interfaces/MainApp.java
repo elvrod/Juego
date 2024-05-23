@@ -21,16 +21,25 @@ public class MainApp {
         JButton registerButton = new JButton("Registrarse");
         registerButton.setBackground(Color.LIGHT_GRAY);
         registerButton.setForeground(Color.GRAY);
-        JButton loginButton = new JButton("Iniciar Sesion");
+        JButton loginButton = new JButton("Iniciar Sesión");
         loginButton.setForeground(Color.GRAY);
         loginButton.setBackground(Color.LIGHT_GRAY);
         homePanel.add(registerButton);
         homePanel.add(loginButton);
 
-        // Crear los paneles de registro, inicio de sesi�n y men� principal
+        // Crear los paneles de registro, inicio de sesión y menú principal
         RegisterPanel registerPanel = new RegisterPanel(mainPanel, cardLayout);
         LoginPanel loginPanel = new LoginPanel(mainPanel, cardLayout, registerPanel.getUsers());
-        MenuPanel menuPanel = new MenuPanel();
+
+        // Inicializar rankings
+        RankingPPT rankingPPT = new RankingPPT();
+        RankingTicTacToe rankingTicTacToe = new RankingTicTacToe();
+        
+        // Obtener el usuario actual (ejemplo: solicitándolo al inicio)
+        String currentUser = "Usuario"; // Puedes cambiar esto para obtener el usuario real
+        
+        // Crear el panel de menú principal
+        MenuPanel menuPanel = new MenuPanel(currentUser, rankingPPT, rankingTicTacToe);
 
         // Agregar los paneles al CardLayout
         mainPanel.add(homePanel, "home");
@@ -41,10 +50,10 @@ public class MainApp {
         // Agregar el mainPanel al JFrame
         mainFrame.getContentPane().add(mainPanel);
 
-        // Accion del boton para mostrar el panel de registro
+        // Acción del botón para mostrar el panel de registro
         registerButton.addActionListener(e -> cardLayout.show(mainPanel, "register"));
 
-        // Accion del boton para mostrar el panel de inicio de sesion
+        // Acción del botón para mostrar el panel de inicio de sesión
         loginButton.addActionListener(e -> cardLayout.show(mainPanel, "login"));
 
         // Hacer visible la ventana principal
