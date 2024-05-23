@@ -73,7 +73,7 @@ public class PiedraPapelTijera extends JFrame {
 
         String resultado = determinarGanador(jugadaJugador, jugadaMaquina);
         resultadoLabel.setText(resultado);
-        historialPPT.agregarPartida(currentUser + " vs Máquina: " + resultado);
+        historialPPT.agregarPartida(currentUser + " vs Maquina: " + resultado);
     }
 
     private String determinarGanador(String jugadaJugador, String jugadaMaquina) {
@@ -85,7 +85,7 @@ public class PiedraPapelTijera extends JFrame {
             rankingPPT.actualizarPuntos(currentUser, 3);
             return "¡" + currentUser + " gana!";
         } else {
-            return "¡La máquina gana!";
+            return "¡La maquina gana!";
         }
     }
 

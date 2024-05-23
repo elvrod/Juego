@@ -71,7 +71,7 @@ public class RegisterPanel extends JPanel {
 
                 // Guardar el nuevo usuario
                 users.put(username, password);
-                JOptionPane.showMessageDialog(RegisterPanel.this, "Usuario registrado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(RegisterPanel.this, "Usuario registrado con éxito", "Exito", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
