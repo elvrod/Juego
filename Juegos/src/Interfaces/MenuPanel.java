@@ -16,18 +16,34 @@ public class MenuPanel extends JPanel {
     private String currentUser;
     private RankingPPT rankingPPT;
     private RankingTicTacToe rankingTicTacToe;
+    private Historial historialPPT;
+    private Historial historialTicTacToe;
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
 
-    public MenuPanel(String currentUser, RankingPPT rankingPPT, RankingTicTacToe rankingTicTacToe) {
+    public MenuPanel(String currentUser, RankingPPT rankingPPT, RankingTicTacToe rankingTicTacToe, Historial historialPPT, Historial historialTicTacToe, CardLayout cardLayout, JPanel mainPanel) {
         this.currentUser = currentUser;
         this.rankingPPT = rankingPPT;
         this.rankingTicTacToe = rankingTicTacToe;
+        this.historialPPT = historialPPT;
+        this.historialTicTacToe = historialTicTacToe;
+        this.cardLayout = cardLayout;
+        this.mainPanel = mainPanel;
 
         setLayout(new BorderLayout());
         setBackground(Color.GRAY);
 
-        // Botón para ir al perfil (arriba a la izquierda)
+        // Bot�n para ir al perfil (arriba a la izquierda)
         btnPerfil = createButton("Perfil");
         btnPerfil.setPreferredSize(new Dimension(150, 40));
+        btnPerfil.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PerfilPanel perfilPanel = new PerfilPanel(currentUser, rankingPPT, rankingTicTacToe, cardLayout, mainPanel);
+                mainPanel.add(perfilPanel, "perfil");
+                cardLayout.show(mainPanel, "perfil");
+            }
+        });
         add(btnPerfil, BorderLayout.NORTH);
 
         // Panel para los botones de ranking y jugar
@@ -42,8 +58,16 @@ public class MenuPanel extends JPanel {
         btnJugar3EnRaya.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TicTacToe tictactoe = new TicTacToe(currentUser, rankingTicTacToe);
+                TicTacToe tictactoe = new TicTacToe(currentUser, rankingTicTacToe, historialTicTacToe);
                 tictactoe.setVisible(true);
+            }
+        });
+        btnHistorial3EnRaya.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HistorialPanel historialPanel = new HistorialPanel("Historial 3 en Raya", historialTicTacToe, cardLayout, mainPanel);
+                mainPanel.add(historialPanel, "historialTicTacToe");
+                cardLayout.show(mainPanel, "historialTicTacToe");
             }
         });
         centerPanel.add(btnRanking3EnRaya);
@@ -57,8 +81,16 @@ public class MenuPanel extends JPanel {
         btnJugarPiedraPapelTijera.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PiedraPapelTijera juego = new PiedraPapelTijera(currentUser, rankingPPT);
+                PiedraPapelTijera juego = new PiedraPapelTijera(currentUser, rankingPPT, historialPPT);
                 juego.setVisible(true);
+            }
+        });
+        btnHistorialPiedraPapelTijera.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HistorialPanel historialPanel = new HistorialPanel("Historial Piedra, Papel, Tijera", historialPPT, cardLayout, mainPanel);
+                mainPanel.add(historialPanel, "historialPPT");
+                cardLayout.show(mainPanel, "historialPPT");
             }
         });
         centerPanel.add(btnRankingPiedraPapelTijera);
@@ -81,8 +113,8 @@ public class MenuPanel extends JPanel {
         });
 
         // Deshabilitar botones de historial por ahora
-        btnHistorial3EnRaya.setEnabled(false);
-        btnHistorialPiedraPapelTijera.setEnabled(false);
+        btnHistorial3EnRaya.setEnabled(true);
+        btnHistorialPiedraPapelTijera.setEnabled(true);
     }
 
     private JButton createButton(String text) {
@@ -90,7 +122,6 @@ public class MenuPanel extends JPanel {
         button.setBackground(Color.LIGHT_GRAY);
         button.setForeground(Color.GRAY);
         button.setFocusPainted(false);
-        button.setPreferredSize(new Dimension(150, 100)); // Ajusta el tamaño del botón
         return button;
     }
 }

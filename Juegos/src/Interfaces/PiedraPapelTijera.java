@@ -12,14 +12,16 @@ public class PiedraPapelTijera extends JFrame {
     private Random random;
     private String currentUser;
     private RankingPPT rankingPPT;
+    private Historial historialPPT;
 
-    public PiedraPapelTijera(String currentUser, RankingPPT rankingPPT) {
+    public PiedraPapelTijera(String currentUser, RankingPPT rankingPPT, Historial historialPPT) {
         this.currentUser = currentUser;
         this.rankingPPT = rankingPPT;
+        this.historialPPT = historialPPT;
 
         setTitle("Piedra, Papel, Tijera");
         setSize(300, 200);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cambiar EXIT_ON_CLOSE a DISPOSE_ON_CLOSE
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(4, 1));
 
@@ -61,34 +63,37 @@ public class PiedraPapelTijera extends JFrame {
         random = new Random();
     }
 
-    private void jugar(String jugadaJugador) {
+    public PiedraPapelTijera() {
+		// TODO Auto-generated constructor stub
+	}
+
+	private void jugar(String jugadaJugador) {
         String[] jugadas = {"PIEDRA", "PAPEL", "TIJERA"};
         String jugadaMaquina = jugadas[random.nextInt(jugadas.length)];
 
         String resultado = determinarGanador(jugadaJugador, jugadaMaquina);
         resultadoLabel.setText(resultado);
-        actualizarRanking(resultado);
+        historialPPT.agregarPartida(currentUser + " vs Máquina: " + resultado);
     }
 
     private String determinarGanador(String jugadaJugador, String jugadaMaquina) {
         if (jugadaJugador.equals(jugadaMaquina)) {
-            return "Â¡Empate!";
+            return "¡Empate!";
         } else if ((jugadaJugador.equals("PIEDRA") && jugadaMaquina.equals("TIJERA")) ||
                    (jugadaJugador.equals("PAPEL") && jugadaMaquina.equals("PIEDRA")) ||
                    (jugadaJugador.equals("TIJERA") && jugadaMaquina.equals("PAPEL"))) {
-            return "Â¡Ganaste!";
+            rankingPPT.actualizarPuntos(currentUser, 3);
+            return "¡" + currentUser + " gana!";
         } else {
-            return "Â¡Perdiste!";
+            return "¡La máquina gana!";
         }
     }
 
-    private void actualizarRanking(String resultado) {
-        if (resultado.equals("Â¡Ganaste!")) {
-            rankingPPT.actualizarPuntos(currentUser, 3);
-        } else if (resultado.equals("Â¡Empate!")) {
-            rankingPPT.actualizarPuntos(currentUser, 1);
-        } else {
-            rankingPPT.actualizarPuntos(currentUser, 0);
-        }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new PiedraPapelTijera().setVisible(true);
+            }
+        });
     }
 }

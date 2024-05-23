@@ -10,21 +10,25 @@ public class TicTacToe extends JFrame {
     private JButton[][] buttons;
     private boolean playerX;
     private int movesCount;
+    private Random random;
     private String currentUser;
     private RankingTicTacToe rankingTicTacToe;
+    private Historial historialTicTacToe;
 
-    public TicTacToe(String currentUser, RankingTicTacToe rankingTicTacToe) {
+    public TicTacToe(String currentUser, RankingTicTacToe rankingTicTacToe, Historial historialTicTacToe) {
         this.currentUser = currentUser;
         this.rankingTicTacToe = rankingTicTacToe;
+        this.historialTicTacToe = historialTicTacToe;
 
         setTitle("3 en Raya");
         setSize(400, 400);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cambiar EXIT_ON_CLOSE a DISPOSE_ON_CLOSE
         setLayout(new GridLayout(3, 3));
 
         buttons = new JButton[3][3];
         playerX = true;
         movesCount = 0;
+        random = new Random();
 
         initializeButtons();
     }
@@ -82,58 +86,28 @@ public class TicTacToe extends JFrame {
     }
 
     private void makeComputerMove() {
-        int[] move = findBestMove();
-        buttons[move[0]][move[1]].setText("O");
-        buttons[move[0]][move[1]].setEnabled(false);
-        movesCount++;
-        if (checkForWin()) {
-            JOptionPane.showMessageDialog(null, "Â¡La computadora gana!");
-            rankingTicTacToe.actualizarPuntos(currentUser, 0);
-            resetGame();
-        } else if (checkForDraw()) {
-            JOptionPane.showMessageDialog(null, "Â¡Empate!");
-            rankingTicTacToe.actualizarPuntos(currentUser, 1);
-            resetGame();
-        } else {
-            playerX = true;
-        }
-    }
-
-    private int[] findBestMove() {
-        // Primero intenta ganar
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (buttons[i][j].getText().equals("")) {
-                    buttons[i][j].setText("O");
-                    if (checkForWin()) {
-                        buttons[i][j].setText("");
-                        return new int[]{i, j};
-                    }
-                    buttons[i][j].setText("");
-                }
-            }
-        }
-        // Luego intenta bloquear al jugador
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (buttons[i][j].getText().equals("")) {
-                    buttons[i][j].setText("X");
-                    if (checkForWin()) {
-                        buttons[i][j].setText("");
-                        return new int[]{i, j};
-                    }
-                    buttons[i][j].setText("");
-                }
-            }
-        }
-        // Si no hay movimientos de ganar o bloquear, elige una posiciÃ³n aleatoria
-        Random random = new Random();
         int x, y;
         do {
             x = random.nextInt(3);
             y = random.nextInt(3);
         } while (!buttons[x][y].getText().equals(""));
-        return new int[]{x, y};
+
+        buttons[x][y].setText("O");
+        buttons[x][y].setEnabled(false);
+        movesCount++;
+        if (checkForWin()) {
+            JOptionPane.showMessageDialog(null, "¡La computadora gana!");
+            rankingTicTacToe.actualizarPuntos(currentUser, 0);
+            historialTicTacToe.agregarPartida(currentUser + " vs Máquina: La computadora gana");
+            resetGame();
+        } else if (checkForDraw()) {
+            JOptionPane.showMessageDialog(null, "¡Empate!");
+            rankingTicTacToe.actualizarPuntos(currentUser, 1);
+            historialTicTacToe.agregarPartida(currentUser + " vs Máquina: Empate");
+            resetGame();
+        } else {
+            playerX = true;
+        }
     }
 
     private class ButtonClickListener implements ActionListener {
@@ -151,12 +125,14 @@ public class TicTacToe extends JFrame {
                 buttons[x][y].setEnabled(false);
                 movesCount++;
                 if (checkForWin()) {
-                    JOptionPane.showMessageDialog(null, "Â¡" + currentUser + " gana!");
+                    JOptionPane.showMessageDialog(null, "¡" + currentUser + " gana!");
                     rankingTicTacToe.actualizarPuntos(currentUser, 3);
+                    historialTicTacToe.agregarPartida(currentUser + " vs Máquina: " + currentUser + " gana");
                     resetGame();
                 } else if (checkForDraw()) {
-                    JOptionPane.showMessageDialog(null, "Â¡Empate!");
+                    JOptionPane.showMessageDialog(null, "¡Empate!");
                     rankingTicTacToe.actualizarPuntos(currentUser, 1);
+                    historialTicTacToe.agregarPartida(currentUser + " vs Máquina: Empate");
                     resetGame();
                 } else {
                     makeComputerMove();

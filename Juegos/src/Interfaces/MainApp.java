@@ -9,7 +9,7 @@ public class MainApp {
         // Crear la ventana principal (JFrame)
         JFrame mainFrame = new JFrame("Ventana Principal");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(600, 400); // Ajusta el tamaÃ±o del JFrame para hacerlo mÃ¡s grande
+        mainFrame.setSize(600, 400);
 
         // Crear un CardLayout para gestionar los paneles
         CardLayout cardLayout = new CardLayout();
@@ -21,25 +21,27 @@ public class MainApp {
         JButton registerButton = new JButton("Registrarse");
         registerButton.setBackground(Color.LIGHT_GRAY);
         registerButton.setForeground(Color.GRAY);
-        JButton loginButton = new JButton("Iniciar SesiÃ³n");
+        JButton loginButton = new JButton("Iniciar Sesión");
         loginButton.setForeground(Color.GRAY);
         loginButton.setBackground(Color.LIGHT_GRAY);
         homePanel.add(registerButton);
         homePanel.add(loginButton);
 
-        // Crear los paneles de registro, inicio de sesiÃ³n y menÃº principal
+        // Crear los paneles de registro, inicio de sesión y menú principal
         RegisterPanel registerPanel = new RegisterPanel(mainPanel, cardLayout);
         LoginPanel loginPanel = new LoginPanel(mainPanel, cardLayout, registerPanel.getUsers());
 
-        // Inicializar rankings
+        // Inicializar rankings e historiales
         RankingPPT rankingPPT = new RankingPPT();
         RankingTicTacToe rankingTicTacToe = new RankingTicTacToe();
+        Historial historialPPT = new Historial();
+        Historial historialTicTacToe = new Historial();
         
-        // Obtener el usuario actual (ejemplo: solicitÃ¡ndolo al inicio)
+        // Obtener el usuario actual (ejemplo: solicitándolo al inicio)
         String currentUser = "Usuario"; // Puedes cambiar esto para obtener el usuario real
         
-        // Crear el panel de menÃº principal
-        MenuPanel menuPanel = new MenuPanel(currentUser, rankingPPT, rankingTicTacToe);
+        // Crear el panel de menú principal
+        MenuPanel menuPanel = new MenuPanel(currentUser, rankingPPT, rankingTicTacToe, historialPPT, historialTicTacToe, cardLayout, mainPanel);
 
         // Agregar los paneles al CardLayout
         mainPanel.add(homePanel, "home");
@@ -50,10 +52,10 @@ public class MainApp {
         // Agregar el mainPanel al JFrame
         mainFrame.getContentPane().add(mainPanel);
 
-        // AcciÃ³n del botÃ³n para mostrar el panel de registro
+        // Acción del botón para mostrar el panel de registro
         registerButton.addActionListener(e -> cardLayout.show(mainPanel, "register"));
 
-        // AcciÃ³n del botÃ³n para mostrar el panel de inicio de sesiÃ³n
+        // Acción del botón para mostrar el panel de inicio de sesión
         loginButton.addActionListener(e -> cardLayout.show(mainPanel, "login"));
 
         // Hacer visible la ventana principal
