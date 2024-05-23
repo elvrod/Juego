@@ -9,7 +9,7 @@ public class MainApp {
         // Crear la ventana principal (JFrame)
         JFrame mainFrame = new JFrame("Ventana Principal");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(434, 277);
+        mainFrame.setSize(600, 400); // Ajusta el tamaño del JFrame para hacerlo más grande
 
         // Crear un CardLayout para gestionar los paneles
         CardLayout cardLayout = new CardLayout();

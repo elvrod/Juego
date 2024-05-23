@@ -90,6 +90,7 @@ public class MenuPanel extends JPanel {
         button.setBackground(Color.LIGHT_GRAY);
         button.setForeground(Color.GRAY);
         button.setFocusPainted(false);
+        button.setPreferredSize(new Dimension(150, 100)); // Ajusta el tamaño del botón
         return button;
     }
 }

@@ -10,7 +10,6 @@ public class TicTacToe extends JFrame {
     private JButton[][] buttons;
     private boolean playerX;
     private int movesCount;
-    private Random random;
     private String currentUser;
     private RankingTicTacToe rankingTicTacToe;
 
@@ -20,13 +19,12 @@ public class TicTacToe extends JFrame {
 
         setTitle("3 en Raya");
         setSize(400, 400);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cambiar EXIT_ON_CLOSE a DISPOSE_ON_CLOSE
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(3, 3));
 
         buttons = new JButton[3][3];
         playerX = true;
         movesCount = 0;
-        random = new Random();
 
         initializeButtons();
     }
@@ -84,14 +82,9 @@ public class TicTacToe extends JFrame {
     }
 
     private void makeComputerMove() {
-        int x, y;
-        do {
-            x = random.nextInt(3);
-            y = random.nextInt(3);
-        } while (!buttons[x][y].getText().equals(""));
-
-        buttons[x][y].setText("O");
-        buttons[x][y].setEnabled(false);
+        int[] move = findBestMove();
+        buttons[move[0]][move[1]].setText("O");
+        buttons[move[0]][move[1]].setEnabled(false);
         movesCount++;
         if (checkForWin()) {
             JOptionPane.showMessageDialog(null, "¡La computadora gana!");
@@ -101,7 +94,46 @@ public class TicTacToe extends JFrame {
             JOptionPane.showMessageDialog(null, "¡Empate!");
             rankingTicTacToe.actualizarPuntos(currentUser, 1);
             resetGame();
+        } else {
+            playerX = true;
         }
+    }
+
+    private int[] findBestMove() {
+        // Primero intenta ganar
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (buttons[i][j].getText().equals("")) {
+                    buttons[i][j].setText("O");
+                    if (checkForWin()) {
+                        buttons[i][j].setText("");
+                        return new int[]{i, j};
+                    }
+                    buttons[i][j].setText("");
+                }
+            }
+        }
+        // Luego intenta bloquear al jugador
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (buttons[i][j].getText().equals("")) {
+                    buttons[i][j].setText("X");
+                    if (checkForWin()) {
+                        buttons[i][j].setText("");
+                        return new int[]{i, j};
+                    }
+                    buttons[i][j].setText("");
+                }
+            }
+        }
+        // Si no hay movimientos de ganar o bloquear, elige una posición aleatoria
+        Random random = new Random();
+        int x, y;
+        do {
+            x = random.nextInt(3);
+            y = random.nextInt(3);
+        } while (!buttons[x][y].getText().equals(""));
+        return new int[]{x, y};
     }
 
     private class ButtonClickListener implements ActionListener {
