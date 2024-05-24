@@ -20,9 +20,10 @@ public class PerfilPanel extends JPanel {
         this.mainPanel = mainPanel;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.GRAY);
+        setBackground(new Color(0, 204, 153));
 
         JLabel lblNombre = new JLabel("Nombre: " + currentUser);
+        lblNombre.setBackground(new Color(204, 255, 204));
         lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
         lblNombre.setAlignmentX(CENTER_ALIGNMENT);
 
@@ -35,6 +36,7 @@ public class PerfilPanel extends JPanel {
         lblRankingTicTacToe.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton btnVolver = new JButton("Volver");
+        btnVolver.setBackground(new Color(204, 255, 204));
         btnVolver.setAlignmentX(CENTER_ALIGNMENT);
         btnVolver.addActionListener(new ActionListener() {
             @Override
@@ -44,6 +46,7 @@ public class PerfilPanel extends JPanel {
         });
 
         JButton btnCerrarSesion = new JButton("Cerrar Sesion");
+        btnCerrarSesion.setBackground(new Color(204, 255, 204));
         btnCerrarSesion.setAlignmentX(CENTER_ALIGNMENT);
         btnCerrarSesion.addActionListener(new ActionListener() {
             @Override

@@ -15,6 +15,7 @@ public class PiedraPapelTijera extends JFrame {
     private Historial historialPPT;
 
     public PiedraPapelTijera(String currentUser, RankingPPT rankingPPT, Historial historialPPT) {
+    	getContentPane().setBackground(new Color(0, 204, 153));
         this.currentUser = currentUser;
         this.rankingPPT = rankingPPT;
         this.historialPPT = historialPPT;
@@ -23,21 +24,24 @@ public class PiedraPapelTijera extends JFrame {
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(4, 1));
+        getContentPane().setLayout(new GridLayout(4, 1));
 
         resultadoLabel = new JLabel("", SwingConstants.CENTER);
-        add(resultadoLabel);
+        getContentPane().add(resultadoLabel);
 
         piedraButton = new JButton("Piedra");
+        piedraButton.setBackground(new Color(204, 255, 204));
         papelButton = new JButton("Papel");
+        papelButton.setBackground(new Color(204, 255, 204));
         tijeraButton = new JButton("Tijera");
+        tijeraButton.setBackground(new Color(204, 255, 204));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 3));
         buttonPanel.add(piedraButton);
         buttonPanel.add(papelButton);
         buttonPanel.add(tijeraButton);
-        add(buttonPanel);
+        getContentPane().add(buttonPanel);
 
         piedraButton.addActionListener(new ActionListener() {
             @Override
