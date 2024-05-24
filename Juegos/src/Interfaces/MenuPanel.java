@@ -34,7 +34,7 @@ public class MenuPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.GRAY);
 
-        // Botón para ir al perfil (arriba a la izquierda)
+        // Boton para ir al perfil (arriba a la izquierda)
         btnPerfil = createButton("Perfil");
         btnPerfil.setPreferredSize(new Dimension(150, 40));
         btnPerfil.addActionListener(new ActionListener() {
@@ -47,8 +47,8 @@ public class MenuPanel extends JPanel {
         });
         add(btnPerfil, BorderLayout.NORTH);
 
-        // Botón para cerrar sesión (abajo al centro)
-        btnCerrarSesion = createButton("Cerrar Sesión");
+        // Boton para cerrar sesion (abajo al centro)
+        btnCerrarSesion = createButton("Cerrar Sesion");
         btnCerrarSesion.setPreferredSize(new Dimension(150, 40));
         btnCerrarSesion.addActionListener(new ActionListener() {
             @Override

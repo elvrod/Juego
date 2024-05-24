@@ -26,11 +26,11 @@ public class PerfilPanel extends JPanel {
         lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
         lblNombre.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel lblRankingPPT = new JLabel("Ranking Piedra, Papel, Tijera: Posición " + obtenerPosicionRanking(rankingPPT, currentUser));
+        JLabel lblRankingPPT = new JLabel("Ranking Piedra, Papel, Tijera: Posicion " + obtenerPosicionRanking(rankingPPT, currentUser));
         lblRankingPPT.setFont(new Font("Arial", Font.PLAIN, 14));
         lblRankingPPT.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel lblRankingTicTacToe = new JLabel("Ranking 3 en Raya: Posición " + obtenerPosicionRanking(rankingTicTacToe, currentUser));
+        JLabel lblRankingTicTacToe = new JLabel("Ranking 3 en Raya: Posicion " + obtenerPosicionRanking(rankingTicTacToe, currentUser));
         lblRankingTicTacToe.setFont(new Font("Arial", Font.PLAIN, 14));
         lblRankingTicTacToe.setAlignmentX(CENTER_ALIGNMENT);
 
@@ -43,7 +43,7 @@ public class PerfilPanel extends JPanel {
             }
         });
 
-        JButton btnCerrarSesion = new JButton("Cerrar Sesión");
+        JButton btnCerrarSesion = new JButton("Cerrar Sesion");
         btnCerrarSesion.setAlignmentX(CENTER_ALIGNMENT);
         btnCerrarSesion.addActionListener(new ActionListener() {
             @Override

@@ -25,7 +25,7 @@ public class LoginPanel extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Crear y agregar componentes para el inicio de sesión
+        // Crear y agregar componentes para el inicio de sesion
         JLabel userLabel = new JLabel("Nombre Usuario:");
         userLabel.setFont(new Font("Arial", Font.BOLD, 14));
         gbc.gridx = 0;
@@ -37,7 +37,7 @@ public class LoginPanel extends JPanel {
         gbc.gridy = 0;
         this.add(userText, gbc);
 
-        JLabel passwordLabel = new JLabel("Contraseña:");
+        JLabel passwordLabel = new JLabel("Contrasena:");
         passwordLabel.setFont(new Font("Arial", Font.BOLD, 14));
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -48,7 +48,7 @@ public class LoginPanel extends JPanel {
         gbc.gridy = 1;
         this.add(passwordText, gbc);
 
-        JButton submitLoginButton = new JButton("Iniciar Sesión");
+        JButton submitLoginButton = new JButton("Iniciar Sesion");
         submitLoginButton.setBackground(Color.LIGHT_GRAY);
         submitLoginButton.setForeground(Color.GRAY);
         gbc.gridx = 0;
@@ -62,10 +62,10 @@ public class LoginPanel extends JPanel {
         gbc.gridy = 3;
         this.add(backButton, gbc);
 
-        // Acción del botón para volver al panel principal
+        // Accion del boton para volver al panel principal
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "home"));
 
-        // Acción del botón para iniciar sesión
+        // Accion del boton para iniciar sesion
         submitLoginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,13 +78,13 @@ public class LoginPanel extends JPanel {
                     Historial historialPPT = historialesPPT.computeIfAbsent(username, k -> new Historial());
                     Historial historialTicTacToe = historialesTicTacToe.computeIfAbsent(username, k -> new Historial());
 
-                    // Cambiar al panel del menú principal
+                    // Cambiar al panel del menu principal
                     MenuPanel menuPanel = new MenuPanel(username, rankingPPT, rankingTicTacToe, historialPPT, historialTicTacToe, cardLayout, mainPanel);
                     mainPanel.add(menuPanel, "menu");
                     cardLayout.show(mainPanel, "menu");
                 } else {
                     // Mostrar un mensaje de error al usuario (credenciales incorrectas)
-                    JOptionPane.showMessageDialog(LoginPanel.this, "Nombre de usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(LoginPanel.this, "Nombre de usuario o contrasena incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

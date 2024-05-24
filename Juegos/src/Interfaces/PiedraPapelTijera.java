@@ -69,20 +69,20 @@ public class PiedraPapelTijera extends JFrame {
 
         String resultado = determinarGanador(jugadaJugador, jugadaMaquina);
         resultadoLabel.setText(resultado);
-        historialPPT.agregarPartida(currentUser + " vs MÃ¡quina: " + resultado);
+        historialPPT.agregarPartida(currentUser + " vs Maquina: " + resultado);
     }
 
     private String determinarGanador(String jugadaJugador, String jugadaMaquina) {
         if (jugadaJugador.equals(jugadaMaquina)) {
             rankingPPT.actualizarPuntos(currentUser, 1);
-            return "Â¡Empate!";
+            return "¡Empate!";
         } else if ((jugadaJugador.equals("PIEDRA") && jugadaMaquina.equals("TIJERA")) ||
                    (jugadaJugador.equals("PAPEL") && jugadaMaquina.equals("PIEDRA")) ||
                    (jugadaJugador.equals("TIJERA") && jugadaMaquina.equals("PAPEL"))) {
             rankingPPT.actualizarPuntos(currentUser, 3);
-            return "Â¡" + currentUser + " gana!";
+            return "¡" + currentUser + " gana!";
         } else {
-            return "Â¡La mÃ¡quina gana!";
+            return "¡La maquina gana!";
         }
     }
 }

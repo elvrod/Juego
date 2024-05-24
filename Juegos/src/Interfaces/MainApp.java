@@ -23,13 +23,13 @@ public class MainApp {
         JButton registerButton = new JButton("Registrarse");
         registerButton.setBackground(Color.LIGHT_GRAY);
         registerButton.setForeground(Color.GRAY);
-        JButton loginButton = new JButton("Iniciar Sesión");
+        JButton loginButton = new JButton("Iniciar Sesion");
         loginButton.setForeground(Color.GRAY);
         loginButton.setBackground(Color.LIGHT_GRAY);
         homePanel.add(registerButton);
         homePanel.add(loginButton);
 
-        // Crear los paneles de registro, inicio de sesión y menú principal
+        // Crear los paneles de registro, inicio de sesion y menu principal
         RegisterPanel registerPanel = new RegisterPanel(mainPanel, cardLayout);
         Map<String, String> users = registerPanel.getUsers();
 
@@ -49,10 +49,10 @@ public class MainApp {
         // Agregar el mainPanel al JFrame
         mainFrame.getContentPane().add(mainPanel);
 
-        // Acción del botón para mostrar el panel de registro
+        // Accion del boton para mostrar el panel de registro
         registerButton.addActionListener(e -> cardLayout.show(mainPanel, "register"));
 
-        // Acción del botón para mostrar el panel de inicio de sesión
+        // Accion del boton para mostrar el panel de inicio de sesion
         loginButton.addActionListener(e -> cardLayout.show(mainPanel, "login"));
 
         // Hacer visible la ventana principal

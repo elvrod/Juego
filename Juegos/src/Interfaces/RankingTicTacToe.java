@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RankingTicTacToe extends Ranking {    private Map<String, Integer> puntos;
+public class RankingTicTacToe extends Ranking {   
+	private Map<String, Integer> puntos;
 
     public RankingTicTacToe() {
         puntos = new HashMap<>();
