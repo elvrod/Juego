@@ -13,6 +13,7 @@ public class MenuPanel extends JPanel {
     private JButton btnJugar3EnRaya;
     private JButton btnJugarPiedraPapelTijera;
     private JButton btnPerfil;
+    private JButton btnCerrarSesion;
     private String currentUser;
     private RankingPPT rankingPPT;
     private RankingTicTacToe rankingTicTacToe;
@@ -33,7 +34,7 @@ public class MenuPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.GRAY);
 
-        // Bot髇 para ir al perfil (arriba a la izquierda)
+        // Bot贸n para ir al perfil (arriba a la izquierda)
         btnPerfil = createButton("Perfil");
         btnPerfil.setPreferredSize(new Dimension(150, 40));
         btnPerfil.addActionListener(new ActionListener() {
@@ -45,6 +46,17 @@ public class MenuPanel extends JPanel {
             }
         });
         add(btnPerfil, BorderLayout.NORTH);
+
+        // Bot贸n para cerrar sesi贸n (abajo al centro)
+        btnCerrarSesion = createButton("Cerrar Sesi贸n");
+        btnCerrarSesion.setPreferredSize(new Dimension(150, 40));
+        btnCerrarSesion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "login");
+            }
+        });
+        add(btnCerrarSesion, BorderLayout.SOUTH);
 
         // Panel para los botones de ranking y jugar
         JPanel centerPanel = new JPanel(new GridLayout(2, 3, 10, 10));

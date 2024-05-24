@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterPanel extends JPanel {
-    private Map<String, String> users = new HashMap<>(); // Almacena los usuarios registrados (nombre de usuario, contrase馻)
+    private Map<String, String> users = new HashMap<>(); // Almacena los usuarios registrados (nombre de usuario, contrase帽a)
 
     public RegisterPanel(JPanel mainPanel, CardLayout cardLayout) {
         this.setLayout(new GridBagLayout());
@@ -28,7 +28,7 @@ public class RegisterPanel extends JPanel {
         gbc.gridy = 0;
         this.add(userText, gbc);
 
-        JLabel passwordLabel = new JLabel("Contrasena:");
+        JLabel passwordLabel = new JLabel("Contrase帽a:");
         passwordLabel.setFont(new Font("Arial", Font.BOLD, 14));
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -53,10 +53,10 @@ public class RegisterPanel extends JPanel {
         gbc.gridy = 3;
         this.add(backButton, gbc);
 
-        // Accion del boton para volver al panel principal
+        // Acci贸n del bot贸n para volver al panel principal
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "home"));
 
-        // Acci髇 del bot髇 para registrar un nuevo usuario
+        // Acci贸n del bot贸n para registrar un nuevo usuario
         submitRegisterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,7 +71,7 @@ public class RegisterPanel extends JPanel {
 
                 // Guardar el nuevo usuario
                 users.put(username, password);
-                JOptionPane.showMessageDialog(RegisterPanel.this, "Usuario registrado con 閤ito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(RegisterPanel.this, "Usuario registrado con 茅xito", "脡xito", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }

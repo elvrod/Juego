@@ -48,7 +48,7 @@ public class TicTacToe extends JFrame {
     private void resetGame() {
         playerX = true;
         movesCount = 0;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) { // CorrecciÃ³n aquÃ­
             for (int j = 0; j < 3; j++) {
                 buttons[i][j].setText("");
                 buttons[i][j].setEnabled(true);
@@ -96,14 +96,14 @@ public class TicTacToe extends JFrame {
         buttons[x][y].setEnabled(false);
         movesCount++;
         if (checkForWin()) {
-            JOptionPane.showMessageDialog(null, "¡La computadora gana!");
+            JOptionPane.showMessageDialog(null, "Â¡La computadora gana!");
             rankingTicTacToe.actualizarPuntos(currentUser, 0);
-            historialTicTacToe.agregarPartida(currentUser + " vs Máquina: La computadora gana");
+            historialTicTacToe.agregarPartida(currentUser + " vs MÃ¡quina: La computadora gana");
             resetGame();
         } else if (checkForDraw()) {
-            JOptionPane.showMessageDialog(null, "¡Empate!");
+            JOptionPane.showMessageDialog(null, "Â¡Empate!");
             rankingTicTacToe.actualizarPuntos(currentUser, 1);
-            historialTicTacToe.agregarPartida(currentUser + " vs Máquina: Empate");
+            historialTicTacToe.agregarPartida(currentUser + " vs MÃ¡quina: Empate");
             resetGame();
         } else {
             playerX = true;
@@ -125,14 +125,14 @@ public class TicTacToe extends JFrame {
                 buttons[x][y].setEnabled(false);
                 movesCount++;
                 if (checkForWin()) {
-                    JOptionPane.showMessageDialog(null, "¡" + currentUser + " gana!");
+                    JOptionPane.showMessageDialog(null, "Â¡" + currentUser + " gana!");
                     rankingTicTacToe.actualizarPuntos(currentUser, 3);
-                    historialTicTacToe.agregarPartida(currentUser + " vs Máquina: " + currentUser + " gana");
+                    historialTicTacToe.agregarPartida(currentUser + " vs MÃ¡quina: " + currentUser + " gana");
                     resetGame();
                 } else if (checkForDraw()) {
-                    JOptionPane.showMessageDialog(null, "¡Empate!");
+                    JOptionPane.showMessageDialog(null, "Â¡Empate!");
                     rankingTicTacToe.actualizarPuntos(currentUser, 1);
-                    historialTicTacToe.agregarPartida(currentUser + " vs Máquina: Empate");
+                    historialTicTacToe.agregarPartida(currentUser + " vs MÃ¡quina: Empate");
                     resetGame();
                 } else {
                     makeComputerMove();
@@ -140,4 +140,4 @@ public class TicTacToe extends JFrame {
             }
         }
     }
-}// please
+}

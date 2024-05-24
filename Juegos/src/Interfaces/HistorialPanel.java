@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class HistorialPanel extends JPanel {
     private CardLayout cardLayout;
@@ -15,34 +16,36 @@ public class HistorialPanel extends JPanel {
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
 
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
         setBackground(Color.GRAY);
 
-        JLabel lblTitulo = new JLabel(titulo);
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 16));
-        lblTitulo.setAlignmentX(CENTER_ALIGNMENT);
+        JLabel lblTitulo = new JLabel(titulo, SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 20));
+        lblTitulo.setForeground(Color.WHITE);
+        add(lblTitulo, BorderLayout.NORTH);
 
-        JTextArea textArea = new JTextArea(15, 30);
-        textArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        for (String resultado : historial.obtenerHistorial()) {
-            textArea.append(resultado + "\n");
-        }
+        JTextArea txtHistorial = new JTextArea();
+        txtHistorial.setEditable(false);
+        txtHistorial.setBackground(Color.LIGHT_GRAY);
+        txtHistorial.setForeground(Color.BLACK);
+        JScrollPane scrollPane = new JScrollPane(txtHistorial);
+        add(scrollPane, BorderLayout.CENTER);
 
         JButton btnVolver = new JButton("Volver");
-        btnVolver.setAlignmentX(CENTER_ALIGNMENT);
+        btnVolver.setBackground(Color.LIGHT_GRAY);
+        btnVolver.setForeground(Color.GRAY);
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(mainPanel, "menu");
             }
         });
+        add(btnVolver, BorderLayout.SOUTH);
 
-        add(Box.createRigidArea(new Dimension(0, 20)));
-        add(lblTitulo);
-        add(Box.createRigidArea(new Dimension(0, 20)));
-        add(scrollPane);
-        add(Box.createRigidArea(new Dimension(0, 20)));
-        add(btnVolver);
+        // Cargar el historial de partidas
+        List<String> partidas = historial.obtenerHistorial();
+        for (String partida : partidas) {
+            txtHistorial.append(partida + "\n");
+        }
     }
 }

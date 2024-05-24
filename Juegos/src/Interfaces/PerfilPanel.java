@@ -26,11 +26,11 @@ public class PerfilPanel extends JPanel {
         lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
         lblNombre.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel lblRankingPPT = new JLabel("Ranking Piedra, Papel, Tijera: " + obtenerPosicionRanking(rankingPPT, currentUser));
+        JLabel lblRankingPPT = new JLabel("Ranking Piedra, Papel, Tijera: Posición " + obtenerPosicionRanking(rankingPPT, currentUser));
         lblRankingPPT.setFont(new Font("Arial", Font.PLAIN, 14));
         lblRankingPPT.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel lblRankingTicTacToe = new JLabel("Ranking 3 en Raya: " + obtenerPosicionRanking(rankingTicTacToe, currentUser));
+        JLabel lblRankingTicTacToe = new JLabel("Ranking 3 en Raya: Posición " + obtenerPosicionRanking(rankingTicTacToe, currentUser));
         lblRankingTicTacToe.setFont(new Font("Arial", Font.PLAIN, 14));
         lblRankingTicTacToe.setAlignmentX(CENTER_ALIGNMENT);
 
@@ -43,6 +43,15 @@ public class PerfilPanel extends JPanel {
             }
         });
 
+        JButton btnCerrarSesion = new JButton("Cerrar Sesión");
+        btnCerrarSesion.setAlignmentX(CENTER_ALIGNMENT);
+        btnCerrarSesion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "login");
+            }
+        });
+
         add(Box.createRigidArea(new Dimension(0, 20)));
         add(lblNombre);
         add(Box.createRigidArea(new Dimension(0, 20)));
@@ -51,6 +60,8 @@ public class PerfilPanel extends JPanel {
         add(lblRankingTicTacToe);
         add(Box.createRigidArea(new Dimension(0, 20)));
         add(btnVolver);
+        add(Box.createRigidArea(new Dimension(0, 20)));
+        add(btnCerrarSesion);
     }
 
     private int obtenerPosicionRanking(Ranking ranking, String usuario) {

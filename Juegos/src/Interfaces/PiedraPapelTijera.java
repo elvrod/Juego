@@ -63,37 +63,26 @@ public class PiedraPapelTijera extends JFrame {
         random = new Random();
     }
 
-    public PiedraPapelTijera() {
-		// TODO Auto-generated constructor stub
-	}
-
-	private void jugar(String jugadaJugador) {
+    private void jugar(String jugadaJugador) {
         String[] jugadas = {"PIEDRA", "PAPEL", "TIJERA"};
         String jugadaMaquina = jugadas[random.nextInt(jugadas.length)];
 
         String resultado = determinarGanador(jugadaJugador, jugadaMaquina);
         resultadoLabel.setText(resultado);
-        historialPPT.agregarPartida(currentUser + " vs Maquina: " + resultado);
+        historialPPT.agregarPartida(currentUser + " vs MÃ¡quina: " + resultado);
     }
 
     private String determinarGanador(String jugadaJugador, String jugadaMaquina) {
         if (jugadaJugador.equals(jugadaMaquina)) {
-            return "¡Empate!";
+            rankingPPT.actualizarPuntos(currentUser, 1);
+            return "Â¡Empate!";
         } else if ((jugadaJugador.equals("PIEDRA") && jugadaMaquina.equals("TIJERA")) ||
                    (jugadaJugador.equals("PAPEL") && jugadaMaquina.equals("PIEDRA")) ||
                    (jugadaJugador.equals("TIJERA") && jugadaMaquina.equals("PAPEL"))) {
             rankingPPT.actualizarPuntos(currentUser, 3);
-            return "¡" + currentUser + " gana!";
+            return "Â¡" + currentUser + " gana!";
         } else {
-            return "¡La maquina gana!";
+            return "Â¡La mÃ¡quina gana!";
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new PiedraPapelTijera().setVisible(true);
-            }
-        });
     }
 }

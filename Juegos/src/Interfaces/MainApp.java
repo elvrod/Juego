@@ -2,6 +2,8 @@ package Interfaces;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainApp {
 
@@ -21,44 +23,39 @@ public class MainApp {
         JButton registerButton = new JButton("Registrarse");
         registerButton.setBackground(Color.LIGHT_GRAY);
         registerButton.setForeground(Color.GRAY);
-        JButton loginButton = new JButton("Iniciar Sesión");
+        JButton loginButton = new JButton("Iniciar SesiÃ³n");
         loginButton.setForeground(Color.GRAY);
         loginButton.setBackground(Color.LIGHT_GRAY);
         homePanel.add(registerButton);
         homePanel.add(loginButton);
 
-        // Crear los paneles de registro, inicio de sesión y menú principal
+        // Crear los paneles de registro, inicio de sesiÃ³n y menÃº principal
         RegisterPanel registerPanel = new RegisterPanel(mainPanel, cardLayout);
-        LoginPanel loginPanel = new LoginPanel(mainPanel, cardLayout, registerPanel.getUsers());
+        Map<String, String> users = registerPanel.getUsers();
 
-        // Inicializar rankings e historiales
+        // Inicializar rankings e historiales globales
         RankingPPT rankingPPT = new RankingPPT();
         RankingTicTacToe rankingTicTacToe = new RankingTicTacToe();
-        Historial historialPPT = new Historial();
-        Historial historialTicTacToe = new Historial();
-        
-        // Obtener el usuario actual (ejemplo: solicitándolo al inicio)
-        String currentUser = "Usuario"; // Puedes cambiar esto para obtener el usuario real
-        
-        // Crear el panel de menú principal
-        MenuPanel menuPanel = new MenuPanel(currentUser, rankingPPT, rankingTicTacToe, historialPPT, historialTicTacToe, cardLayout, mainPanel);
+        Map<String, Historial> historialesPPT = new HashMap<>();
+        Map<String, Historial> historialesTicTacToe = new HashMap<>();
+
+        LoginPanel loginPanel = new LoginPanel(mainPanel, cardLayout, users, historialesPPT, historialesTicTacToe, rankingPPT, rankingTicTacToe);
 
         // Agregar los paneles al CardLayout
         mainPanel.add(homePanel, "home");
         mainPanel.add(registerPanel, "register");
         mainPanel.add(loginPanel, "login");
-        mainPanel.add(menuPanel, "menu");
 
         // Agregar el mainPanel al JFrame
         mainFrame.getContentPane().add(mainPanel);
 
-        // Acción del botón para mostrar el panel de registro
+        // AcciÃ³n del botÃ³n para mostrar el panel de registro
         registerButton.addActionListener(e -> cardLayout.show(mainPanel, "register"));
 
-        // Acción del botón para mostrar el panel de inicio de sesión
+        // AcciÃ³n del botÃ³n para mostrar el panel de inicio de sesiÃ³n
         loginButton.addActionListener(e -> cardLayout.show(mainPanel, "login"));
 
         // Hacer visible la ventana principal
         mainFrame.setVisible(true);
     }
-}// no
+}

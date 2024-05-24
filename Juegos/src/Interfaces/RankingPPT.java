@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RankingPPT implements Ranking {
+
+public class RankingPPT extends Ranking {
     private Map<String, Integer> puntos;
 
     public RankingPPT() {
