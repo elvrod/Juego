@@ -21,6 +21,7 @@ public class LoginPanel extends JPanel {
         this.rankingTicTacToe = rankingTicTacToe;
 
         this.setLayout(new GridBagLayout());
+        this.setBackground(new Color(51, 204, 153)); 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -49,16 +50,16 @@ public class LoginPanel extends JPanel {
         this.add(passwordText, gbc);
 
         JButton submitLoginButton = new JButton("Iniciar Sesion");
-        submitLoginButton.setBackground(Color.LIGHT_GRAY);
-        submitLoginButton.setForeground(Color.GRAY);
+        submitLoginButton.setBackground(new Color(204, 255, 204)); // Azul pastel
+        submitLoginButton.setForeground(new Color(47, 79, 79)); // Texto gris oscuro
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
         this.add(submitLoginButton, gbc);
 
         JButton backButton = new JButton("Volver");
-        backButton.setBackground(Color.LIGHT_GRAY);
-        backButton.setForeground(Color.GRAY);
+        backButton.setBackground(new Color(204, 255, 204)); // Azul pastel
+        backButton.setForeground(new Color(47, 79, 79)); // Texto gris oscuro
         gbc.gridy = 3;
         this.add(backButton, gbc);
 

@@ -32,7 +32,7 @@ public class MenuPanel extends JPanel {
         this.mainPanel = mainPanel;
 
         setLayout(new BorderLayout());
-        setBackground(Color.GRAY);
+        setBackground(new Color(255, 228, 225)); // Fondo rosa pastel
 
         // Boton para ir al perfil (arriba a la izquierda)
         btnPerfil = createButton("Perfil");
@@ -131,9 +131,10 @@ public class MenuPanel extends JPanel {
 
     private JButton createButton(String text) {
         JButton button = new JButton(text);
-        button.setBackground(Color.LIGHT_GRAY);
-        button.setForeground(Color.GRAY);
+        button.setBackground(new Color(204, 255, 204)); // Azul pastel
+        button.setForeground(new Color(47, 79, 79)); // Texto gris oscuro
         button.setFocusPainted(false);
+        button.setFont(new Font("Tahoma", Font.PLAIN, 16));
         return button;
     }
 }

@@ -31,9 +31,9 @@ public class RankingPPT extends Ranking {
         
         for (int i = 0; i < sortedEntries.size(); i++) {
             if (sortedEntries.get(i).getKey().equals(usuario)) {
-                return i + 1; // Posiciones empiezan en 1
+                return i + 1; 
             }
         }
-        return -1; // Usuario no encontrado en el ranking
+        return -1; 
     }
 }

@@ -12,6 +12,7 @@ public class RegisterPanel extends JPanel {
 
     public RegisterPanel(JPanel mainPanel, CardLayout cardLayout) {
         this.setLayout(new GridBagLayout());
+        this.setBackground(new Color(51, 204, 153)); // Fondo verde pastel
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -40,16 +41,16 @@ public class RegisterPanel extends JPanel {
         this.add(passwordText, gbc);
 
         JButton submitRegisterButton = new JButton("Registrar");
-        submitRegisterButton.setBackground(Color.LIGHT_GRAY);
-        submitRegisterButton.setForeground(Color.GRAY);
+        submitRegisterButton.setBackground(new Color(204, 255, 204)); // Azul pastel
+        submitRegisterButton.setForeground(new Color(47, 79, 79)); // Texto gris oscuro
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
         this.add(submitRegisterButton, gbc);
 
         JButton backButton = new JButton("Volver");
-        backButton.setBackground(Color.LIGHT_GRAY);
-        backButton.setForeground(Color.GRAY);
+        backButton.setBackground(new Color(204, 255, 204)); // Azul pastel
+        backButton.setForeground(new Color(47, 79, 79)); // Texto gris oscuro
         gbc.gridy = 3;
         this.add(backButton, gbc);
 
@@ -71,7 +72,7 @@ public class RegisterPanel extends JPanel {
 
                 // Guardar el nuevo usuario
                 users.put(username, password);
-                JOptionPane.showMessageDialog(RegisterPanel.this, "Usuario registrado con exito", "exito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(RegisterPanel.this, "Usuario registrado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }

@@ -19,13 +19,18 @@ public class MainApp {
 
         // Crear el panel de inicio
         JPanel homePanel = new JPanel();
-        homePanel.setBackground(Color.GRAY);
+        homePanel.setBackground(new Color(51, 204, 153)); 
         JButton registerButton = new JButton("Registrarse");
-        registerButton.setBackground(Color.LIGHT_GRAY);
-        registerButton.setForeground(Color.GRAY);
+        registerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        registerButton.setBounds(336, 125, 210, 105);
+        registerButton.setBackground(new Color(204, 255, 204)); 
+        registerButton.setForeground(new Color(47, 79, 79)); 
         JButton loginButton = new JButton("Iniciar Sesion");
-        loginButton.setForeground(Color.GRAY);
-        loginButton.setBackground(Color.LIGHT_GRAY);
+        loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        loginButton.setBounds(65, 125, 210, 105);
+        loginButton.setForeground(new Color(47, 79, 79)); 
+        loginButton.setBackground(new Color(204, 255, 204));
+        homePanel.setLayout(null);
         homePanel.add(registerButton);
         homePanel.add(loginButton);
 
